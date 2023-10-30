@@ -1,0 +1,87 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load string_converter %}
+
+<!-- 페이지별 title -->
+{% block title %}Project{% endblock %}
+
+<!-- head 부분 페이지별 추가적인 css, js 있으면 여기에 -->
+{% block extra_code %}
+<link rel="stylesheet" href="{% static 'css/card.css'%}">
+{% endblock %}
+
+<!-- 본문 (body) 내용 추가 -->
+{% block content %}
+   <div id="cardOuterbox">
+
+    <div id="titleBox">
+      <h2 id="cardTitle">Project</h2>
+      <p>씨애랑 동아리원이 기획하고 개발한 프로젝트 작품입니다. </p>
+        
+        
+      <button id="writeProject" 
+              {% if request.session.id %}
+              onclick="location.href='/project/write'"
+              {% else %}
+              onclick="alert('로그인해주세요.'); location.href='/login' "
+              {% endif %}>Project Upload</button>
+        
+    </div>
+
+       
+    <div id="cardBox">
+
+    <!-- 최대 8개 -->
+    {% for proj in data %}
+    <div class="cardContainer inactive">
+        <div class="card">
+          <div class="side front">
+            <div class="img img1">
+              <img src="media/{{ proj.image }}" alt="">
+                
+            </div>
+            <div class="info">
+              <h2>{{ proj.title }}</h2>
+              <p>{{ proj.summary }}
+              </p>
+            </div>
+          </div>
+          <div class="side back">
+            <div class="info">
+              <h2>{{ proj.title }}</h2>
+              <ul>
+                <li>[ {{ proj.category|teamCategory }} ] {{ proj.team }}</li>
+                <li>{{ proj.teammate }}</li>
+                <li>{{ proj.summary }}</li>
+                <li>{{ proj.created_at }}</li>
+              </ul>
+              <div class="btn" onclick="location.href='/project/detail/{{ proj.id }}'">
+                <h4>View More</h4>
+                <svg fill="#333" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M8.59 16.34l4.58-4.59-4.58-4.59L10 5.75l6 6-6 6z"/><path d="M0-.25h24v24H0z" fill="none"/></svg>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+        
+    {% endfor %}
+        
+    
+      <div class="pagination">
+        <a href="#">&laquo;</a>
+        {% for page in totalPages %}
+        <a href="?page={{ page }}" {% if page == currentPage %} class="active" {% endif %}>{{ page }}</a>
+        {% endfor %}
+        <a href="#">&raquo;</a>
+      </div>
+
+    </div>
+
+  </div>
+
+{% endblock %}
+
+<!-- 페이지별 추가 스크립트 추가 -->
+{% block extra_script %}
+    <script src="{% static 'js/card.js'%}"></script>
+{% endblock %}

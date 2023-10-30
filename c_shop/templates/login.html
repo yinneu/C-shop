@@ -1,0 +1,129 @@
+{% extends 'base.html' %}
+{% load static %}
+
+<!-- 페이지별 title -->
+{% block title %}Login{% endblock %}
+
+<!-- head 부분 페이지별 추가적인 css, js 있으면 여기에 -->
+{% block extra_code %}
+<link rel="stylesheet" href="{% static 'css/loginstyle.css' %}">
+
+{% endblock %}
+
+<!-- 본문 (body) 내용 추가 -->
+{% block content %}
+
+    <div class="wrapper">
+      <!-- 실질적인 내용 -->
+      <div class="container">
+          <!-- sign up 컨테이너(회원가입) -->
+        <div class="sign-up-container">
+          <form onSubmit="return signUp(this);">
+              {% csrf_token %}
+            <h1>Create Account</h1>
+            <span>or use your Student ID for registration</span>
+            <input name="name" type="text" placeholder="Name" >
+            <!-- <input type="text" placeholder="Student ID"> -->
+            <input name="id" type="ID" placeholder="ID">
+            <input name="pw" type="password" placeholder="Password">
+            <input name="pwCheck" type="password" placeholder="Password Check">
+            <!-- 재 확인용 -->
+
+            <button class="form_btn">Sign Up</button>
+          </form>
+        </div>
+
+        <!-- sign in 컨테이너(로그인) -->
+        <div class="sign-in-container">
+          <form onSubmit="return signIn(this);">
+              {% csrf_token %}
+            <h1>Sign In</h1>
+            <span>or use your account</span>
+            <input name="id" type="ID" placeholder="ID" id="signInId">
+            <input name="pw" type="password" placeholder="Password" id="signInPw">
+            <button class="form_btn" >Sign In</button>
+          </form>
+        </div>
+
+        <div class="overlay-container">
+          <div class="overlay-left">
+            <!-- sign in(로그인)을 위한 오버레이  -->
+            <h1>Welcome Back</h1>
+            <p>To keep connected with us please login with your personal info</p>
+            <button id="signIn" class="overlay_btn">Sign In</button>
+          </div>
+
+          <div class="overlay-right">
+            <!-- sign up(회원가입) 을 위한 오버레이 -->
+            <h1>Hello, Friend</h1>
+            <p>Enter your personal details and start community with us</p>
+            <button id="signUp" class="overlay_btn">Sign Up</button>
+          </div>
+
+        </div>
+      </div>
+    </div>
+{% endblock %}
+
+<!-- 페이지별 추가 스크립트 추가 -->
+{% block extra_script %}
+<script  src="{% static 'js/login.js'%}"></script>
+<script>
+    function signIn(obj) {
+      if (!obj.id.value) {
+        alert("id를 입력해주세요.");
+        return false;
+      }
+      if (!obj.pw.value) {
+        alert("password를 입력해주세요.");
+        return false;
+      }
+      $.ajax({
+        type: "POST",
+        url: '/member/login',
+        data: {
+          'id': obj.id.value,
+          'pw': obj.pw.value,
+          'csrfmiddlewaretoken': csrftoken
+        },
+        success: function (ajax_data) {
+          window.location.href = '/';
+        },
+        error: function (xhr, status, error) {
+          alert("ID 혹은 Password를 확인해주세요.");
+        }
+      });
+      return false;
+    }
+    function signUp(obj) {
+      if (!obj.name.value || !obj.id.value || !obj.pw.value) {
+        alert("모두 입력해주세요.");
+        return false;
+      }
+      if (obj.pw.value != obj.pwCheck.value) {
+        alert("비밀번호를 확인해주세요.");
+        return false;
+      }
+      $.ajax({
+        type: "POST",
+        url: '/member/create',
+        data: {
+          'id': obj.id.value,
+          'pw': obj.pw.value,
+          'name': obj.name.value,
+          'csrfmiddlewaretoken': csrftoken
+        },
+        success: function (ajax_data) {
+          window.location.href = '/';
+        },
+        error: function (xhr, status, error) {
+          alert("중복된 ID입니다.");
+        }
+      });
+      return false;
+    }
+    
+    </script>
+{% endblock %}
+
+

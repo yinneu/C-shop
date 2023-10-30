@@ -1,0 +1,178 @@
+{% extends 'base.html' %}
+{% load static %}
+<!-- 페이지별 title -->
+{% block title %}
+{% endblock %}
+
+<!-- head 부분 페이지별 추가적인 css, js 있으면 여기에 -->
+{% block extra_code %}
+    <link rel="stylesheet" href="{% static 'css/project-detail.css' %}">
+    <style>
+        
+        .box1 {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .box2 input,select {
+            /* background-color: lightgray; */
+        }
+        
+        textarea#content {
+            width: 100%;
+            min-height: 200px;
+        }
+        
+        
+        #exp-img {
+            margin-right: 20px;
+        }
+        
+        #summary {
+            width: 100%;
+        }
+        
+        
+        #uploadProject:hover {
+            cursor: pointer;
+        }
+        
+    </style>
+{% endblock %}
+{% block content %}
+
+
+  <div id="cardOuterbox">
+      
+    <form id="writeProject" action="{% url 'projectCreate' %}" method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+        <div id="titleBox">
+            <!-- 제목 -->
+            <h2 id="cardTitle">프로젝트 업로드</h2>
+        </div>
+
+        <div id="cardBox">
+
+            <div class="box">
+                <div class="box1">
+                    <!-- 사진 -->
+                    <!-- <img src="/static/images/pj1.png" alt=""> -->
+                    <div id="exp-img"> 프로젝트 이미지 업로드 </div>
+                    <input type="file" id="file" name="file" onChange="fileCheck(this)" accept="image/gif, image/jpeg, image/png"/>
+                </div>
+            </div>
+            <div class="box2">
+                <div>
+                    <label for="title">프로젝트명: </label>
+                    <input id="title" name="title" type="text"/> 
+                </div>
+                <div>               
+                    <label for="team">팀명: </label>
+                    <input id="team" name="team" type="text"/> 
+                </div>
+                <div> 
+                <label for="teammate">팀원: </label>
+                <input id="teammate" name="teammate" type="text"/>
+                </div>
+                
+                <div> 
+                <label for="category">소속팀: </label>
+                <select name="category" id="category">
+                    <option value="0">코어(임베디드)</option>
+                    <option value="1">텐서(AI)</option>
+                    <option value="2">라떼(앱)</option>
+                    <option value="3">태그(웹)</option>
+                    <option value="4">라온(게임)</option>
+                    <option value="6">실드(보안)</option>
+                </select>
+                </div> 
+                
+                <div> 
+                    <label for="summary">프로젝트 한줄소개</label>
+                    <input id="summary" name="summary" type="text"/> 
+                </div>
+                
+                <div> 
+                    <label for="link">깃허브</label>
+                    <input id="link" name="link" type="text"/> 
+                </div>
+            </div>
+            <div class="box3">                
+                <textarea id="content" name="content" type="textarea" placeholder="프로젝트 설명을 입력해주세요. 개요 , 개발배경, 사용한 툴, 주요기능 등"></textarea>
+            </div>
+        </div>
+        <center>
+            <!-- <button id="uploadProject">Upload</button> -->
+            <input id="uploadProject" type="submit" value="Upload"/>
+        </center>
+      </form>
+        
+  </div>
+
+
+{% endblock %}
+
+<!-- 페이지별 추가 스크립트 추가 -->
+{% block extra_script %}
+
+<script>
+    
+const csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value;
+
+    
+    
+function fileCheck(obj) {
+    let file = input.files[0];
+    console.log('chcek');
+    // 이미지 파일검사, 이미지 프리뷰
+}
+    
+// $(document).ready(function (){
+//   $("#uploadProject").click(function () {
+      
+//       var form = $("#writeProject")[0];
+//       var formData = new FormData(form);     
+      
+      // $.ajax({
+      //   type: "POST",
+      //   url: "{% url 'projectCreate' %}",
+      //   // data: $("#writeProject").serialize(),
+      //   data: formData,
+      //   cache: false,
+      //   contentType : false,
+      //   processData : false,
+      //   success: function(data) {
+      //       // alert(data);
+      //       console.log(data);
+      //       // alert('프로젝트가 업로드되었습니다.');
+      //       let response = confirm("프로젝트가 업로드되었습니다.");
+      //         if(response){
+      //           // window.location.href = "{% url 'project' %}";
+      //            // 여기에 name을 쓸수 있눈듯
+      //           // alert("성공적으로 삭제되었습니다.");
+      //         }
+            
+      //       // window.location.href = "{% url 'project' %}";
+            
+      //   },
+      //     error: function (xhr, status, error) {
+      //         alert(error);
+      //         console.log(error);
+      //   },
+      //   complete : function(){
+      //       window.location.href = "/project";
+      //         let response = confirm("프로젝트가 업로드되었습니다.");
+      //         if(response){
+      //           window.location.href = "/project";
+      //         }
+      //     }
+      // });
+    });
+});
+    
+
+
+
+</script>
+{% endblock %}

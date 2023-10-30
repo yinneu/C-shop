@@ -1,0 +1,157 @@
+*, *:after, *:before {
+    box-sizing: border-box; }
+
+body {
+    overflow-x: hidden;
+    margin: 0;
+}
+
+h2 {
+    font-size: 27px;
+    font-weight: 500;
+    letter-spacing: -0.2px;
+    margin-bottom: 10px; 
+}
+
+button:hover {
+    cursor: pointer;
+}
+  
+
+
+#cardOuterbox {
+    position: relative;
+    padding: 300px 0 50px;
+    background-color: white;
+    margin: -165px 0 0;
+    background: linear-gradient(87deg, #172b4d 0, #1a174d 100%) !important;
+}
+
+#cardBox {
+    padding: 36px 50px 70px;
+    position: relative;
+    width: 1000px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    margin: 50px auto;
+    background-color: white;
+    border-radius: 10px;
+    
+}
+  
+/* 메인 타이틀 박스 */
+#titleBox {
+    position: relative;
+    margin: 50px 0 10px 18%;
+    /* left: 50px; */
+    
+}
+
+#titleBox h2 {
+    font-weight: 600;
+    font-size: 50px;
+    margin-bottom: 16px;
+    /* text-decoration: underline; */
+}
+
+#titleBox p {
+    color:#c4c4c4;
+    font-size: 18px;
+    
+}
+
+.box {
+    /* width: 80rem; */
+    width: 100%;
+    /* height: 500px; */
+    height: 400px;
+    display: flex;
+    box-sizing: border-box;
+    justify-content: center;
+    
+}
+
+.box1 {
+    width: 100%; 
+    /* width: 470px; */
+    height: 100%;
+    margin: 4% 0 20px;
+    /* border: 1px solid grey; */
+    box-sizing: border-box;
+    border-radius: 10px;
+    box-shadow: 0px 6px 7px 3px rgba(0, 0, 0, 0.2);
+    
+    
+}
+
+    .box1 img {
+        object-fit: contain;
+        width: 100%;
+        height: 100%;
+    }
+
+    
+
+
+.box2 {
+    /* width: 40%; */
+    /* width: 340px; */
+    width: 100%;
+    /* height: 80%; */
+    margin: 70px 0 20px;
+    padding: 30px;
+    /* border: 1px solid grey; */
+    /* border: 2px solid rgba(0, 0, 139, 0.793); */
+    border: 3px solid #1a174d;
+    /* background-color: rgb(24, 81, 156); */
+    background: linear-gradient(87deg, #172b4d 0, #1a174d 100%);
+    box-sizing: border-box;
+    border-radius: 10px;
+    color: rgba(255, 255, 255, 0.821);
+}
+
+    .box2 p {
+        margin: 6px 0;
+        font-weight: 600;
+        /* color: black; */
+        color: lightgray;
+    }
+
+    .box2 p span {
+        /* color: gray; */
+        color: white;
+    }
+
+    .box2 > ul > li {
+        /* color: black; */
+        color: rgba(255, 255, 255, 0.705);
+        font-weight: 600;
+
+    }
+
+
+
+
+.box3 {
+    /* width: 80rem; */
+    width: 100%;
+    /* height: 200px; */
+    /* display: flex; */
+    box-sizing: border-box;
+    /* justify-content: space-around; */
+    padding: 30px;
+    /* box-sizing: border-box; */
+    /* border: 3px solid grey; */
+    border: 3px solid rgb(24, 81, 156);
+    border-radius: 10px;
+}
+
+    .box3 p {
+        color: rgba(0, 0, 0, 0.753);
+        font-weight: 600;
+    }
+
+
+

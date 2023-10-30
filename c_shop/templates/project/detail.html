@@ -1,0 +1,71 @@
+{% extends 'base.html' %}
+{% load static %}
+<!-- 페이지별 title -->
+{% block title %}
+{% endblock %}
+
+<!-- head 부분 페이지별 추가적인 css, js 있으면 여기에 -->
+{% block extra_code %}
+    <link rel="stylesheet" href="{% static 'css/project-detail.css' %}">
+{% endblock %}
+{% block content %}
+
+
+  <div id="cardOuterbox">
+
+    <div id="titleBox">
+        <!-- 제목 -->
+      <h2 id="cardTitle">{{ data.title }}</h2>
+    </div>
+      
+
+    <div id="cardBox">
+        <div class="box">
+            <div class="box1">
+                <!-- 사진 -->
+                <img src="/media/{{ image }}" alt="">
+            </div>
+        </div>
+        <div class="box2">
+            <p>프로젝트명: <span>{{ data.title }}</span></p>
+            <p>팀명: <span>{{ data.team }}</span></p>
+            <p>팀원: <span>{{ data.teammate }}</span></p>
+            <!-- 디테일 기능 설명 -->
+            <p>소속팀: <span>[ {{ data.category }} ]</span></p>
+            <p>한줄소개: <span>{{ data.summary }}</span></p>
+        </div>
+        <div class="box3">
+            {{ data.content }}
+        </div>
+        {{ data.created_at }}
+    </div>
+    <center>
+            <button id="gobackList" onclick="gobackList()">프로젝트 목록</button>
+            {% if writer == request.session.id %}            
+                <!-- <button id="updateProject" onclick="window.location.href = '/project/edit/{{ data.id }}';">수정</button> -->
+                <button id="deleteProject" onclick="del_project()">삭제</button>
+            {% endif %}
+    </center>
+  </div>
+{% endblock %}
+
+
+<!-- 페이지별 추가 스크립트 추가 -->
+{% block extra_script %}
+<script>
+
+    function gobackList() {
+        window.location.href = "/project";
+    }
+    
+    function del_project(){
+      var response = confirm("프로젝트를 정말로 삭제하시겠습니까?");
+      if(response){
+        window.location.href = "{% url 'projectDelete' data.id %}" 
+         // 여기에 name을 쓸수 있눈듯
+        alert("성공적으로 삭제되었습니다.");
+      }
+    }
+
+</script>
+{% endblock %}

@@ -1,0 +1,100 @@
+<!-- main 페이지 제외 공통 스크립트 -->
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- 페이지별 title 추가 -->
+    <title>
+        {% block title %} {% endblock %}
+    </title>
+
+    <!-- 공통요소 스타일 -->
+    <link rel="stylesheet" href="{% static 'css/common.css' %}"/>
+    <noscript><link rel="stylesheet" href="{% static 'css/noscript.css' %}" /></noscript>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@100&display=swap" rel="stylesheet">
+
+    <style>
+        body::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, Opera*/
+}
+
+    </style>
+    <!-- 페이지별 추가 css, js -->
+    {% block extra_code %}{% endblock %}
+</head>
+<body>
+
+    <div id="page-wrapper">
+
+                 <!-- Header -->
+            <header id="header">
+               <h1 id="logo"><a href="/">C<sup>#</sup></a></h1>
+               <nav id="nav">
+                  <ul>
+              <li><a href="{% url 'index' %}">Home</a></li>
+              <li><a href="{% url 'project' %}">Project</a></li>
+                     <li>
+                        <a href="#">Community</a>
+                        <ul>
+                           <li><a href="{% url 'communityList' %}">자유게시판</a></li>
+                           <li><a href="{% url 'communityList' %}">구인구직게시판</a></li>
+                           <li><a href="{% url 'communityList' %}">공지사항</a></li>
+                           <li><a href="{% url 'communityList' %}">연혁</a></li>
+                        </ul>
+                     </li>
+              <li><a href="{% url 'shop' %}">Shop</a></li>
+                     
+                     
+                {% if request.session.id %}
+                <!-- 로그인 했을 때 -->
+                <li><a href="{% url 'myPage' %}">Mypage</a></li>
+                <li><span>{{ request.session.name }}</span> 님</li>
+                {% else %}
+                <!-- 로그인 안했을 때 -->
+                <li><a href="{% url 'login' %}" class="button primary">Sign In</a></li>
+                {% endif%}
+                  </ul>
+               </nav>
+            </header>
+        
+
+        <!-- 자식 템플릿에서 블록 재정의 -->
+        {% block content %}
+        {% endblock %}
+
+    </div>
+
+    <!-- 본문 끝 -->
+
+    <!-- Footer -->
+    <footer id="footer">
+    <ul class="copyright">
+        <li>&copy; Untitled. All rights reserved.</li>
+        <li>Team : ssim-zang</li>
+    </ul>
+    </footer>
+
+    <!-- script -->
+    <script src="{% static 'js/jquery.min.js' %}"></script>
+    <script src="{% static 'js/jquery.scrolly.min.js' %}"></script>
+    <script src="{% static 'js/jquery.dropotron.min.js' %}"></script>
+    <script src="{% static 'js/jquery.scrollex.min.js' %}"></script>
+    <script src="{% static 'js/browser.min.js' %}"></script>
+    <script src="{% static 'js/breakpoints.min.js' %}"></script>
+    <script src="{% static 'js/util.js' %}"></script>
+    <script src="{% static 'js/main.js' %}"></script>
+
+    <script>
+        // const csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value;
+    </script>
+
+    <!-- 페이지별 추가 스크립트 추가 -->
+    {% block extra_script %}{% endblock %}
+</body>
+</html>

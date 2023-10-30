@@ -1,0 +1,163 @@
+{% extends 'base.html' %}
+{% load static %}
+<!-- 페이지별 title -->
+{% block title %}C#{% endblock %}
+
+<!-- head 부분 페이지별 추가적인 css, js 있으면 여기에 -->
+{% block extra_code %}
+<link rel="stylesheet" href="{% static 'css/main.css' %}" />
+{% endblock %}
+
+<!-- 본문 (body) 내용 추가 -->
+{% block content %}
+
+<script>
+document.body.className = "is-preload landing";
+</script>
+
+<!-- Banner -->
+				<section id="banner">
+					<div class="content">
+						<header>
+							<h2>C<sup>#</sup></h2>
+							<p>씨애랑과 함께<br />
+							개발자의 꿈을 키워갑니다.</p>
+						</header>
+						<span class="image"><img src="{% static 'images/logo_main.png' %}" alt="" /></span>
+                    </div>
+					<a href="#one" class="goto-next scrolly">Next</a>
+				</section>
+
+         <section id="two" class="spotlight style2 right">
+            <span class="image fit main"><img src="/static/images/main-shop.png" alt="" /></span>
+            <div class="content">
+               <header>
+                  <h2>Cshop(#)</h2>
+                  <p>Cshop(#)은 개발 공부 및 활동을 열정적으로 하는 동아리원들에게 재화인
+                      '애랑 열매' 을 제공하여 재화로 하여금 좋은 기회와 도움을 제공하고 시니어분들과의 연결을 위해 개발하게 되었습니다.</p>
+               </header>
+            </div>
+            <a href="#three" class="goto-next scrolly">Next</a>
+         </section>
+
+
+         <section id="three" class="spotlight style3 left">
+            <span class="image fit main bottom"><img src="/static/images/green1.png" alt="" /></span>
+            <div class="content">
+               <header>
+                  <h2>애랑 열매</h2>
+                  <p>씨애랑 함께 개발하고 열매를 맺어보세요.</p>
+               </header>
+               <p>깃허브 커밋과, 프로젝트를 업로드하여 받을 수 있는 경험치로 마이페이지에 있는 씨앗을 키워 일정 레벨이 도달하면, 0레벨로 초기화 되고, 재화인 애랑 열매를 얻게됩니다. 이 재화를 바탕으로, 시니어분들과의 면담이나 자기소개서 검토 등 좋은 기회를 제공하고자 합니다.
+               </p>
+            </div>
+            <a href="#four" class="goto-next scrolly">Next</a>
+         </section>
+
+			<!-- One -->
+				<section id="one" class="spotlight style1 bottom">
+					<span class="image fit main"><img src="{% static 'images/image_main.jpg' %}" alt="" /></span>
+					<div class="content">
+						<div class="container">
+							<div class="row">
+								<div class="col-4 col-12-medium">
+									<header>
+										<h2>CAERANG</h2>
+										<p> C : Computer <br>
+										애 : 사랑 애<br>
+										랑 : 모임</p>
+									</header>
+								</div>
+								<div class="col-4 col-12-medium">
+									<p>씨애랑이란 C : COMPUTER / 애 : 사랑 애 / 랑 : 모임 이라는 뜻으로 1993년에 개설된 한림대학교 소프트웨어학부
+										학술동아리입니다. 최근 30주년을 맞이한 현재 씨애랑 동아리는 약 130명의 동아리원들과 함께 합니다.
+										 
+									</p>
+								</div>
+								<div class="col-4 col-12-medium">
+									<p>임베디드, 앱, 웹, AI, VR/AR 게임, 보안 분야의 팀으로 나뉘어 공부하고 있습니다. 동아리 운영진과 팀장을 맡은 동아리원의 주도하에 기초 언어 교육, 특강, 프로젝트 개발 활동을 진행합니다.
+										소프트웨어 전시회에 작품을 제출하는 것이 최종 목표 입니다.
+									</p>
+								</div>
+							</div>
+						</div>
+					</div>
+					<a href="#two" class="goto-next scrolly">Next</a>
+				</section>
+
+			<!-- Two -->
+				<section id="two" class="spotlight style2 right">
+					<span class="image fit main"><img src="{% static 'images/30th.jpg' %}" alt="" /></span>
+					<div class="content">
+						<header>
+							<h2>씨애랑의 30주년</h2>
+							<p>1993년 창립이래 작년 2022년에 창립 30주년을 맞이하여 토크 콘서트와 만찬회를 진행하였습니다.</p>
+						</header>
+						<!-- <p>씨애랑 OB 분들의 IT 토크 콘서트 만찬회를 진행하였습니다.</p> -->
+						<!-- <ul class="actions">
+							<li><a href="#" class="button">Learn More</a></li>
+						</ul> -->
+					</div>
+					<a href="#three" class="goto-next scrolly">Next</a>
+				</section>
+
+			<!-- Four -->
+				<section id="four" class="wrapper style1 special fade-up">
+					<div class="container">
+						<header class="major">
+							<h2>CAERANG TEAMS</h2>
+							<p>씨애랑에 소속된 6팀을 소개합니다.</p>
+						</header>
+						<div class="box alt">
+							<div class="row gtr-uniform">
+								<section class="col-4 col-6-medium col-12-xsmall">
+									<!-- 로고 사진 -->
+									<img src="{% static 'images/logo_c.png' %}" alt="">
+									<!-- <span class="icon solid alt major fa-chart-area"></span>  -->
+									<h3>코어</h3>
+									<p>임베디드 개발팀</p>
+								</section>
+								<section class="col-4 col-6-medium col-12-xsmall">
+									<!-- <span class="icon solid alt major fa-comment"></span> -->
+									<img src="{% static 'images/logo_l.png' %}" alt="">
+									<h3>라떼</h3>
+									<p>안드로이드, IOS 앱 개발팀</p>
+								</section>
+								<section class="col-4 col-6-medium col-12-xsmall">
+									<!-- <span class="icon solid alt major fa-flask"></span> -->
+									<img src="{% static 'images/logo_r.png' %}" alt="">
+									<h3>라온</h3>
+									<p>AR/VR/게임 개발팀</p>
+								</section>
+								<section class="col-4 col-6-medium col-12-xsmall">
+									<!-- <span class="icon solid alt major fa-paper-plane"></span> -->
+									<img src="{% static 'images/logo_ta.png' %}" alt="">
+									<h3>태그</h3>
+									<p>프론트엔드, 백엔드 웹 개발팀</p>
+								</section>
+								<section class="col-4 col-6-medium col-12-xsmall">
+									<!-- <span class="icon solid alt major fa-file"></span> -->
+									<img src="{% static 'images/logo_te.png' %}" alt="">
+									<h3>텐서</h3>
+									<p>인공지능팀</p>
+								</section>
+								<section class="col-4 col-6-medium col-12-xsmall">
+									<!-- <span class="icon solid alt major fa-lock"></span> -->
+									<img src="{% static 'images/logo_s.png' %}" alt="">
+									<h3>실드</h3>
+									<p>보안팀</p>
+								</section>
+							</div>
+						</div>
+						<!-- <footer class="major">
+							<ul class="actions special">
+								<li><a href="#" class="button">Magna sed feugiat</a></li>
+							</ul>
+						</footer> -->
+					</div>
+				</section>
+{% endblock %}
+
+<!-- 페이지별 추가 스크립트 추가 -->
+{% block extra_script %}
+{% endblock %}

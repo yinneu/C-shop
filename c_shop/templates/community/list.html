@@ -1,0 +1,127 @@
+{% extends 'base.html' %}
+{% load static %}
+<!-- 페이지별 title -->
+{% block title %}Community{% endblock %}
+
+<!-- head 부분 페이지별 추가적인 css, js 있으면 여기에 -->
+{% block extra_code %}
+<link rel="stylesheet" href="{% static 'css/community/total.css' %}">
+{% endblock %}
+
+<!-- 본문 (body) 내용 추가 -->
+{% block content %}
+    <div class="left_sub_menu">
+        <div class="sub_menu">
+            <!-- <input type="search" name="SEARCH" placeholder="SEARCH"> -->
+            <!-- Search 메뉴를 잠시 삭제해봄 -->
+            <h2><a href="#">Community</a></h2>
+            <ul class="big_menu">
+                <li>씨애랑 떠들썩들썩<i class="arrow fas fa-angle-right"></i></li>
+                <ul class="small_menu">
+                    <li><a href="#">최신 늬우스</a></li>
+                    <li><a href="#"><a>같이 프로젝트 할 사람!</a></li>
+                </ul>
+            </ul>
+            <ul class="big_menu">
+                <li>일자리 게시판<i class="arrow fas fa-angle-right"></i></li>
+                <ul class="small_menu">
+                    <li><a href="#">OB가 구하는 직군</a></li>
+                    <li><a href="#">YB가 구하는 직군</a></li>
+                    <li><a href="">저를 소개합니다.</a></li>
+                </ul>
+            </ul>
+            <ul class="big_menu">
+                <li>공지사항<i class="arrow fas fa-angle-right"></i></li>
+                <ul class="small_menu">
+                    <li><a href="#">주의사항</a></li>
+                    <li><a href="#"><a>행사</a></li>
+                </ul>
+            </ul>
+            <ul class="big_menu">
+                <li>연혁<i class="arrow fas fa-angle-right"></i></li>
+                <ul class="small_menu">
+                    <li><a href="#">동아리의 시작 ~ 90년대</a></li>
+                    <li><a href="#">00년대</a></li>
+                    <li><a href="#">10년대</a></li>
+                    <li><a href="#">20년대</a></li>
+                </ul>
+            </ul>
+        </div>
+    </div>
+    <div class="board_wrap">
+        <div class="board_title">
+            <a href="#"><strong>Community</strong></a>
+            <p>씨애랑 학우분들을 위한 게시판입니다!</p>
+            <div class="searchbox">
+                <input type="search" name="SEARCH" placeholder="SEARCH">
+            </div> 
+        </div>
+        
+        <div class="board_list_wrap">
+            
+            <div class="board_list">
+                <div class="top">
+                    <div class="num">번호</div>
+                    <div class="title">제목</div>
+                    <div class="writer">글쓴이</div>
+                    <div class="date">작성일</div>
+                    <div class="count">조회</div>
+                </div>
+<div>
+                    <div class="num">5</div>
+                    <div class="title"><a href="view.html">웹 프런트엔드 하시는분 두 분 구합니다!</a></div>
+                    <div class="writer">김대현</div>
+                    <div class="date">2023.8.1</div>
+                    <div class="count">31</div>
+                </div>
+                <div>
+                    <div class="num">4</div>
+                    <div class="title"><a href="view.html">UX/UI 디자이너 한 분 구합니다.</a></div>
+                    <div class="writer">이제일</div>
+                    <div class="date">2023.8.2</div>
+                    <div class="count">17</div>
+                </div>
+                <div>
+                    <div class="num">3</div>
+                    <div class="title"><a href="view.html">Back-end 같이 공부하실분 구합니다.</a></div>
+                    <div class="writer">연예림</div>
+                    <div class="date">2023.7.31</div>
+                    <div class="count">24</div>
+                </div>
+                <div>
+                    <div class="num">2</div>
+                    <div class="title"><a href="view.html">Unity2D 게임 프로젝트 같이 진행하실분 구합니다.</a></div>
+                    <div class="writer">노기훈</div>
+                    <div class="date">2023.7.30</div>
+                    <div class="count">51</div>
+                </div>
+                <div>
+                    <div class="num">1</div>
+                    <div class="title"><a href="view.html">태그팀 프로젝트 참여하실분 구합니다~~~</a></div>
+                    <div class="writer">김선우</div>
+                    <div class="date">2023.7.25</div>
+                    <div class="count">22</div>
+                </div>
+            </div>
+            </div>
+            <div class="board_page">
+                <a href="#" class="bt first"><<</a>
+                <a href="#" class="bt prev"><</a>
+                <a href="#" class="num on">1</a>
+                <a href="#" class="num">2</a>
+                <a href="#" class="num">3</a>
+                <a href="#" class="num">4</a>
+                <a href="#" class="num">5</a>
+                <a href="#" class="bt next">></a>
+                <a href="#" class="bt last">>></a>
+            </div>
+            <div class="bt_wrap">
+                <a href="{% url 'communityWrite' %}" class="on">등록</a>
+                <!--<a href="#">수정</a>-->
+            </div>
+        </div>
+    </div>
+        {% endblock %}
+
+<!-- 페이지별 추가 스크립트 추가 -->
+{% block extra_script %}{% endblock %}

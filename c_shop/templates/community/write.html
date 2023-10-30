@@ -1,0 +1,92 @@
+{% load static %}
+<!-- 페이지별 title -->
+{% block title %}
+공지사항
+{% endblock %}
+
+<!-- head 부분 페이지별 추가적인 css, js 있으면 여기에 -->
+{% block extra_code %}
+<link rel="stylesheet" href="{% static 'css/community/total.css' %}">
+{% endblock %}
+
+<!-- 본문 (body) 내용 추가 -->
+{% block content %}
+    <div class="left_sub_menu">
+        <div class="sub_menu">
+            <!-- <input type="search" name="SEARCH" placeholder="SEARCH"> -->
+            <h2><a href="list.html">Community</a></h2>
+            <ul class="big_menu">
+                <li>씨애랑 떠들썩들썩<i class="arrow fas fa-angle-right"></i></li>
+                <ul class="small_menu">
+                    <li><a href="#">최신 늬우스</a></li>
+                    <li><a href="#"><a>같이 프로젝트 할 사람!</a></li>
+                </ul>
+            </ul>
+            <ul class="big_menu">
+                <li>일자리 게시판<i class="arrow fas fa-angle-right"></i></li>
+                <ul class="small_menu">
+                    <li><a href="#">OB가 구하는 직군</a></li>
+                    <li><a href="#">YB가 구하는 직군</a></li>
+                    <li><a href="">저를 소개합니다.</a></li>
+                </ul>
+            </ul>
+            <ul class="big_menu">
+                <li>공지사항<i class="arrow fas fa-angle-right"></i></li>
+                <ul class="small_menu">
+                    <li><a href="#">주의사항</a></li>
+                    <li><a href="#"><a>행사</a></li>
+                </ul>
+            </ul>
+            <ul class="big_menu">
+                <li>연혁<i class="arrow fas fa-angle-right"></i></li>
+                <ul class="small_menu">
+                    <li><a href="#">동아리의 시작 ~ 90년대</a></li>
+                    <li><a href="#">00년대</a></li>
+                    <li><a href="#">10년대</a></li>
+                    <li><a href="#">20년대</a></li>
+                </ul>
+            </ul>
+        </div>
+    </div>
+    <div class="board_wrap">
+        <div class="board_title">
+            <a href="list.html"><strong>Community</strong></a>
+            <p>씨애랑 학우분들을 위한 게시판입니다!</p>
+            <div class="searchbox">
+                <input type="search" name="SEARCH" placeholder="SEARCH">
+            </div>
+        </div>
+        <div class="board_write_wrap">
+            <div class="board_write">
+                <div class="title">
+                    <dl>
+                        <dt>제목</dt>
+                        <dd><input type="text" placeholder="제목 입력"></dd>
+                    </dl>
+                </div>
+                <div class="info">
+                    <dl>
+                        <dt>글쓴이</dt>
+                        <dd><input type="text" placeholder="글쓴이 입력"></dd>
+                    </dl>
+                    <dl>
+                        <dt>첨부파일</dt>
+                        <dd><input type="file" id="avatar" name="avatar" accept="image/png, image/jpeg"></dd>
+                    </dl>
+                </div>
+                <div class="cont">
+                    <textarea placeholder="내용 입력"></textarea>
+                </div>
+            </div>
+            <div class="bt_wrap">
+                <a href="view.html" class="on">등록</a>
+                <a href="list.html">취소</a>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
+
+<!-- 페이지별 추가 스크립트 추가 -->
+{% block extra_script %}
+{% endblock %}
