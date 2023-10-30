@@ -7,10 +7,10 @@
 <!-- head 부분 페이지별 추가적인 css, js 있으면 여기에 -->
 {% block extra_code %}
 
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
 <link rel='stylesheet' href='https://use.fontawesome.com/releases/v5.5.0/css/all.css'>
 <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Inconsolata'>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
 <link rel="stylesheet" href="{% static 'css/shop.css'%}">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/prefixfree/1.0.7/prefixfree.min.js"></script>
 {% endblock %}
@@ -30,7 +30,8 @@
           </h3>
           <button style="margin: auto auto 0 auto;background-color: #a7d7a3b0;width: fit-content;vertical-align: middle;font-size: 20px; border-radius: 12px;padding-right: 10px;">
             <img  src ="{% static 'images/seedimg/fruit.png' %}" style='margin: 8px;vertical-align: middle;' width="20px" height="20px"/>
-            x 100
+            <!-- x 100 -->
+             <span id="price">x 100</span>
           </button>
         </div>
         <div class="modal_card-front" id="modalCardFront">
@@ -70,21 +71,7 @@
           </div>
         </div>
           <div style="display:none;">{{d.effect}}</div>
-        <div class="card mid-top" style="background-image: url({{ d.backgroundImages }});">
-          <div class="contents">
-            <div class="city" style="color:black;">{{ d.summary }}</div>
-          </div>
-        </div>
-        <div class="card mid-bottom" style="background-image: url({{ d.backgroundImages }});">
-          <div class="contents">
-            <div class="city" style="color:black;">{{ d.summary }}</div>
-          </div>
-        </div>
-        <div class="card bottom" style="background-image: url({{ d.backgroundImages }});">
-          <div class="contents">
-            <div class="city" style="color:black;">{{ d.summary }}</div>
-          </div>
-        </div>
+          <div style="display:none;">{{d.price}}</div>
         <div class="card shadow"></div>
       </a>
 

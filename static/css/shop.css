@@ -9,6 +9,10 @@ html.modal-active, body.modal-active {
   overflow: hidden;
 }
 
+button:hover {
+    cursor: pointer;
+}
+
 #modal-container {
   position: fixed;
   display: table;

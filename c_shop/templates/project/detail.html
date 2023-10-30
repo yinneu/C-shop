@@ -1,5 +1,7 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load string_converter %}
+
 <!-- 페이지별 title -->
 {% block title %}
 {% endblock %}
@@ -31,7 +33,7 @@
             <p>팀명: <span>{{ data.team }}</span></p>
             <p>팀원: <span>{{ data.teammate }}</span></p>
             <!-- 디테일 기능 설명 -->
-            <p>소속팀: <span>[ {{ data.category }} ]</span></p>
+            <p>소속팀: <span>[ {{ data.category|teamCategory }} ]</span></p>
             <p>한줄소개: <span>{{ data.summary }}</span></p>
         </div>
         <div class="box3">
