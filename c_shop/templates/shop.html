@@ -12,7 +12,7 @@
 <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Inconsolata'>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
 <link rel="stylesheet" href="{% static 'css/shop.css'%}">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/prefixfree/1.0.7/prefixfree.min.js"></script>
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/prefixfree/1.0.7/prefixfree.min.js"></script> -->
 {% endblock %}
 
 <!-- 본문 (body) 내용 추가 -->
@@ -28,10 +28,11 @@
           <h3 id="modalEffect" style="font-size: 25px;line-height: 25px;margin-bottom: 15px;margin-top: 1em;color:black;">
             Advantage ex) 식사권, 서류합격, 멘토링 등
           </h3>
-          <button style="margin: auto auto 0 auto;background-color: #a7d7a3b0;width: fit-content;vertical-align: middle;font-size: 20px; border-radius: 12px;padding-right: 10px;">
-            <img  src ="{% static 'images/seedimg/fruit.png' %}" style='margin: 8px;vertical-align: middle;' width="20px" height="20px"/>
+          <button id="buyAdvantage" style="margin: auto auto 0 auto;background-color: #a7d7a3b0;width: fit-content;vertical-align: middle;font-size: 20px; border-radius: 12px;padding-right: 10px;"
+                  {% if request.session.id %} onclick="onbuy()" {% else %} onclick="alert('로그인해주세요.'); location.href='/login';" {% endif %}>
+            <img src ="{% static 'images/seedimg/fruit.png' %}" style='margin: 8px;vertical-align: middle;' width="20px" height="20px"/>
             <!-- x 100 -->
-             <span id="price">x 100</span>
+             <span>x </span><span id="price">100</span>
           </button>
         </div>
         <div class="modal_card-front" id="modalCardFront">

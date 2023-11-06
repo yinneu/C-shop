@@ -23,7 +23,7 @@
               {% if request.session.id %}
               onclick="location.href='/project/write'"
               {% else %}
-              onclick="alert('로그인해주세요.'); location.href='{% url 'login %}'"
+              onclick="alert('로그인해주세요.'); location.href='/login';"
               {% endif %}>Project Upload</button>
         
     </div>

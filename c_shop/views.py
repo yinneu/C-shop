@@ -6,6 +6,7 @@ from django.core import serializers
 from c_shop.models import Member, Board, Company, Project, ProjectImages
 from django.core.paginator import Paginator
 import random
+from datetime import datetime, timedelta
 
 def index(request):
     # if(request.session.get('id')):
@@ -87,15 +88,75 @@ def projectEdit(request, id):
 
 
 
+
+def communityList(request):
+    
+    onWrite = True
+    boardtype = -1
+    
+    if 'type' in request.GET:
+        boardtype = int(request.GET['type'] or 0)
+        
+    if boardtype != -1:
+        boards = Board.objects.filter(category=boardtype)
+        if boardtype > 4:
+            onWrite = False
+    else:      
+        boards = Board.objects.all()    
+    boardcnt = boards.count()
+    data = list(boards.order_by('-id'))  
+        
+        
+    if 'page' in request.GET:
+        page_num = int(request.GET['page'] or 1)
+    else:
+        page_num = 1 
+    proj_per_page = 10
+    paginator = Paginator(data, proj_per_page) # page별 분리
+    page = paginator.page(page_num) # 해당 페이지 가져오기  
+    
+    result = {
+        'data': page, 
+        'pagenum': {
+            'total': boardcnt,
+            'start_index': (proj_per_page * (page_num-1)),
+        },
+        'onWrite': onWrite,
+        'type': boardtype,
+        'currentPage': page_num, 
+        'totalPages': paginator.page_range
+    }
+    return render(request, "community/list.html", result)
+
+
+
+
+def communityView(request, id):
+    
+    boardnum = request.GET['bn']
+    board_obj = get_object_or_404(Board, pk=id)
+    
+    cookie_name = f'board_' + str(id)
+    if cookie_name not in request.COOKIES:
+        board_obj.views += 1
+        board_obj.save()
+        expires = datetime.utcnow() + timedelta(days=1)
+        expires = expires.strftime('%a, %d-%b-%Y %H:%M:%S GMT')
+        response = HttpResponse(render(request, "community/view.html", { 'data' : board_obj, 'boardnum' : boardnum }))
+        response.set_cookie(cookie_name, 'true', expires=expires)
+        return response
+    
+    return render(request, "community/view.html", { 'data' : board_obj, 'boardnum' : boardnum, "writer": board_obj.user._id })
+
+
+def communityWrite(request):   
+    boardtype = 0
+    if 'type' in request.GET:
+        boardtype = int(request.GET['type'] or 0)
+    return render(request, "community/write.html", {'type': boardtype})
+
 def communityEdit(request):
     return render(request, "community/edit.html")
-def communityList(request):
-    return render(request, "community/list.html")
-def communityView(request, id):
-    return render(request, "community/view.html")
-def communityWrite(request):
-    return render(request, "community/write.html")
-
 
 
     

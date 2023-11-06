@@ -139,3 +139,54 @@ MEDIA_URL = '/media/'
 STATICFILES_DIRS = (
     os.path.join('static/'),
 )
+
+
+
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'formatters': {
+        'standard': {
+            'format': '%(asctime)s [%(levelname)s] %(name)s: %(message)s'
+        },
+    },
+    'handlers': {
+        'file': {
+            'level': 'INFO',
+            # 'level': 'DEBUG',
+            'encoding': 'utf-8',
+            'class': 'logging.handlers.RotatingFileHandler',
+            'filename': BASE_DIR+'/logs/up.log',
+            'maxBytes': 1024*1024*5,  # 5 MB
+            'backupCount': 5,
+            'formatter': 'standard',
+        },
+    },
+    'loggers': {
+        'django': {
+            'handlers': ['file'],
+            # 'level': 'INFO',
+            'level': 'DEBUG',
+        },
+        'django.request': {
+            'handlers': ['file'],
+            'propagate': False,
+            'level': 'DEBUG',
+            # 'level': 'INFO',
+        },
+        'django.server': {
+            'handlers': ['file'],
+            'propagate': False,
+            'level': 'DEBUG',
+            # 'level': 'INFO',
+        },
+        'my': {
+            'handlers': ['file'],
+            # 'level': 'INFO',
+            'level': 'DEBUG',
+        },
+    }
+}
+
+

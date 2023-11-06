@@ -9,7 +9,7 @@
 
     <!-- 페이지별 title 추가 -->
     <title>
-        C#{% block title %} {% endblock %}
+        C# {% block title %} {% endblock %}
     </title>
 
     <!-- 공통요소 스타일 -->
@@ -21,8 +21,8 @@
 
     <style>
         body::-webkit-scrollbar {
-    display: none; /* Chrome, Safari, Opera*/
-}
+            display: none; /* Chrome, Safari, Opera*/
+        }
 
     </style>
     <!-- 페이지별 추가 css, js -->
@@ -33,14 +33,14 @@
     <div id="page-wrapper">
 
                  <!-- Header -->
-            <header id="header">
+            <header id="header" style="font-family: 'Roboto', Helvetica, sans-serif;">
                <h1 id="logo"><a href="/">C<sup>#</sup></a></h1>
                <nav id="nav">
                   <ul>
               <li><a href="{% url 'index' %}">Home</a></li>
               <li><a href="{% url 'project' %}">Project</a></li>
                      <li>
-                        <a href="#">Community</a>
+                        <a href="{% url 'communityList' %}">Community</a>
                         <ul>
                            <li><a href="{% url 'communityList' %}">자유게시판</a></li>
                            <li><a href="{% url 'communityList' %}">구인구직게시판</a></li>
@@ -91,7 +91,7 @@
     <script src="{% static 'js/main.js' %}"></script>
 
     <script>
-        // const csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value;
+        const csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value;
     </script>
 
     <!-- 페이지별 추가 스크립트 추가 -->

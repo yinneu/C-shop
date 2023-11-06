@@ -1,106 +1,96 @@
+{% extends 'base.html' %}
 {% load static %}
+{% load string_converter %}
+
 <!-- 페이지별 title -->
 {% block title %}
-공지사항
 {% endblock %}
 
 <!-- head 부분 페이지별 추가적인 css, js 있으면 여기에 -->
 {% block extra_code %}
 <link rel="stylesheet" href="{% static 'css/community/total.css'%}">
+<style>
+    #del_board:hover {
+        cursor: pointer;
+    }
+</style>
 {% endblock %}
 
 <!-- 본문 (body) 내용 추가 -->
 {% block content %}
-{% endblock %}
 
-<!-- 페이지별 추가 스크립트 추가 -->
-{% block extra_script %}
-{% endblock %}
-<!DOCTYPE html>
-<html lang="ko">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>공지사항</title>
-    
-</head>
-<body>
-    <div class="left_sub_menu">
-        <div class="sub_menu">
-            <!-- <input type="search" name="SEARCH" placeholder="SEARCH"> -->
-            <h2><a href="list.html">Community</a></h2>
-            <ul class="big_menu">
-                <li>씨애랑 떠들썩들썩<i class="arrow fas fa-angle-right"></i></li>
-                <ul class="small_menu">
-                    <li><a href="#">최신 늬우스</a></li>
-                    <li><a href="#"><a>같이 프로젝트 할 사람!</a></li>
-                </ul>
-            </ul>
-            <ul class="big_menu">
-                <li>일자리 게시판<i class="arrow fas fa-angle-right"></i></li>
-                <ul class="small_menu">
-                    <li><a href="#">OB가 구하는 직군</a></li>
-                    <li><a href="#">YB가 구하는 직군</a></li>
-                    <li><a href="">저를 소개합니다.</a></li>
-                </ul>
-            </ul>
-            <ul class="big_menu">
-                <li>공지사항<i class="arrow fas fa-angle-right"></i></li>
-                <ul class="small_menu">
-                    <li><a href="#">주의사항</a></li>
-                    <li><a href="#"><a>행사</a></li>
-                </ul>
-            </ul>
-            <ul class="big_menu">
-                <li>연혁<i class="arrow fas fa-angle-right"></i></li>
-                <ul class="small_menu">
-                    <li><a href="#">동아리의 시작 ~ 90년대</a></li>
-                    <li><a href="#">00년대</a></li>
-                    <li><a href="#">10년대</a></li>
-                    <li><a href="#">20년대</a></li>
-                </ul>
-            </ul>
-        </div>
+<div id=communityBox>
+    <div class="box1">
+    {% include 'community/bar.html' %}
     </div>
+
+        
     <div class="board_wrap">
         <div class="board_title">
-            <a href="list.html"><strong>Community</strong></a>
-            <p>씨애랑 학우분들을 위한 게시판입니다!</p>
+            <a href="{% url 'communityList' %}?type={{ data.category }}"><strong>{{ data.category|communityCategory }}</strong></a>
+            <p>{{ data.category|categoryExp }}</p>
             <div class="searchbox">
-                <input type="search" name="SEARCH" placeholder="SEARCH">
+                <!-- <input type="search" name="SEARCH" placeholder="SEARCH"> -->
             </div>
         </div>
         <div class="board_view_wrap">
             <div class="board_view">
                 <div class="title">
-                    글 제목이 들어갑니다.
+                    {{ data.title }}
                 </div>
                 <div class="info">
                     <dl>
                         <dt>번호</dt>
-                        <dd>1</dd>
+                        <dd>{{ boardnum }}</dd>
                     </dl>
                     <dl>
                         <dt>글쓴이</dt>
-                        <dd>김이름</dd>
+                        <dd>{{ data.user.name }}</dd>
                     </dl>
                     <dl>
                         <dt>작성일</dt>
-                        <dd>2021.1.16</dd>
+                        <dd>{{ data.created_at }}</dd>
                     </dl>
                     <dl>
                         <dt>조회</dt>
-                        <dd>33</dd>
+                        <dd>{{ data.views }}</dd>
                     </dl>
                 </div>
-                <div class="cont">
+                <div style="white-space:pre;" class="cont">
+                    {{ data.content }}
                 </div>
             </div>
             <div class="bt_wrap">
-                <a href="list.html" class="on">목록</a>
-                <a href="edit.html">수정</a>
+                <a href="{% url 'communityList' %}" class="on">목록</a>
+                {% if request.session.id == writer %}
+                <a id="del_board" onclick="del_board()">삭제</a>
+                {% endif %}
             </div>
         </div>
     </div>
-</body>
-</html>
+</div>
+{% endblock %}
+
+<!-- 페이지별 추가 스크립트 추가 -->
+{% block extra_script %}
+
+<script>
+
+    // function gobackList() {
+    //     window.location.href = "/project";
+    // }
+    
+    function del_board(){
+      var response = confirm("게시물을 정말로 삭제하시겠습니까?");
+      if(response){
+        window.location.href = "{% url 'boardDelete' data.id %}" 
+         // 여기에 name을 쓸수 있눈듯
+        alert("성공적으로 삭제되었습니다.");
+      }
+    }
+
+</script>
+{% endblock %}
+
+    
+

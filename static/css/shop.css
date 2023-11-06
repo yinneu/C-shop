@@ -13,6 +13,7 @@ button:hover {
     cursor: pointer;
 }
 
+
 #modal-container {
   position: fixed;
   display: table;
@@ -600,20 +601,23 @@ button:hover {
 
 
 
-*, *:before, *:after {
+*, *:before, *:after:not(#footer > *) {
 	border: 0;
 	box-sizing: border-box;
 	margin: 0;
 	padding: 0;
 }
 :root {
-	font-size: 18px;
-	--cardW: 14em;
-	--cardH: 8em;
-	--cardZInc: 2em;
+	/* font-size: 18px; */
+	/* --cardW: 14em; */
+    --cardW: 16em;
+	/* --cardH: 8em; */
+    --cardH: 9em;
+	/* --cardZInc: 2em; */
+    --cardZInc: 3em;
 }
 body {
-	font: 1em "Open Sans", sans-serif;
+	/* font: 1em "Open Sans", sans-serif; */
 	height: 100vh;
 	overflow-x: hidden;
 }
@@ -622,6 +626,7 @@ main {
 	margin: auto;
 	position: relative;
 	height: calc(var(--cardH) * 36 - 1.5em);
+    height: calc(var(--cardH) * 36 - 1.5em);
 }
 /* Grid */
 .cards, .stack {

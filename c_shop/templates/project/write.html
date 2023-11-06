@@ -9,19 +9,70 @@
     <link rel="stylesheet" href="{% static 'css/project-detail.css' %}">
     <style>
         
+        
         .box1 {
             display: flex;
             justify-content: center;
             align-items: center;
+            width: 100%;
+            height: 100%;
+            position: relative;
+            /* background-image: url("/media/default/no_image.png");
+            background-repeat: no-repeat;
+            background-position: center; */
+        }
+        
+        .box1 * {
+            position: relative;
+        }
+        
+        .box1::before{
+            content: "";
+            background: url("/media/default/no_image.png");
+            /* background-size: cover; */
+            background-size: auto;
+            background-repeat: no-repeat;
+            background-position: center;
+            opacity: 0.2;
+            position: absolute;
+            top: 0px;
+            left: 0px;
+            right: 0px;
+            bottom: 0px;
+            width: 100%;
+            height: 100%;
         }
         
         .box2 input,select {
             /* background-color: lightgray; */
+            border-radius: 4px;
+            border: 1px solid;
+            height: 24px;
+            min-width: 200px;
+            font-family: 'Roboto', Helvetica, sans-serif;
+        }
+        
+        .box2 select {
+            text-align: center;
+        }
+        
+        .box2 label:not(.label-etc) {
+            display: inline-block;
+            width: 100px;
+            text-align: center;
+        }
+        
+        .label-etc {
+            display: inline-block;
+            width: 200px;
+            margin-top: 8px;
+            margin-bottom: 4px;
         }
         
         textarea#content {
             width: 100%;
             min-height: 200px;
+            font-family: 'Roboto', Helvetica, sans-serif;
         }
         
         
@@ -30,12 +81,16 @@
         }
         
         #summary {
-            width: 100%;
+            width: 80%;
         }
         
         
         #uploadProject:hover {
             cursor: pointer;
+        }
+        
+        .input-box {
+            margin: 4px;
         }
         
     </style>
@@ -55,29 +110,25 @@
         <div id="cardBox">
 
             <div class="box">
+                <div style="width:100%; height:100%;">
                 <div class="box1">
-                    <!-- 사진 -->
-                    <!-- <img src="/static/images/pj1.png" alt=""> -->
-                    <div id="exp-img"> 프로젝트 이미지 업로드 </div>
-                    <input type="file" id="file" name="file" onChange="fileCheck(this)" accept="image/gif, image/jpeg, image/png"/>
+                   
+                        <!-- 사진 -->
+                        <div id="exp-img"> 프로젝트 이미지 업로드 </div>
+                        <input type="file" id="file" name="file" onChange="fileCheck(this)" accept="image/gif, image/jpeg, image/png"/>
+                    
+                </div>
                 </div>
             </div>
             <div class="box2">
-                <div>
-                    <label for="title">프로젝트명: </label>
+                <div class="input-box">
+                    <label for="title">프로젝트명 </label>
                     <input id="title" name="title" type="text"/> 
                 </div>
-                <div>               
-                    <label for="team">팀명: </label>
-                    <input id="team" name="team" type="text"/> 
-                </div>
-                <div> 
-                <label for="teammate">팀원: </label>
-                <input id="teammate" name="teammate" type="text"/>
-                </div>
                 
-                <div> 
-                <label for="category">소속팀: </label>
+                
+                <div class="input-box"> 
+                <label for="category">소속팀 </label>
                 <select name="category" id="category">
                     <option value="0">코어(임베디드)</option>
                     <option value="1">텐서(AI)</option>
@@ -87,19 +138,28 @@
                     <option value="6">실드(보안)</option>
                 </select>
                 </div> 
-                
-                <div> 
-                    <label for="summary">프로젝트 한줄소개</label>
+                <div class="input-box">               
+                    <label for="team">팀명 </label>
+                    <input id="team" name="team" type="text"/> 
+                </div>
+                <div class="input-box"> 
+                <label for="teammate">팀원 </label>
+                <input id="teammate" name="teammate" type="text"/>
+                </div>
+                 <div class="input-box"> 
+                    <label for="link">GitHub </label>
+                    <input id="link" name="link" type="text" style="width:40%;"/> 
+                </div>               
+                <div class="input-box"> 
+                    <label for="summary" class="label-etc">프로젝트 한줄소개</label>
                     <input id="summary" name="summary" type="text"/> 
                 </div>
                 
-                <div> 
-                    <label for="link">깃허브</label>
-                    <input id="link" name="link" type="text"/> 
-                </div>
+
             </div>
             <div class="box3">                
-                <textarea id="content" name="content" type="textarea" placeholder="프로젝트 설명을 입력해주세요. 개요 , 개발배경, 사용한 툴, 주요기능 등"></textarea>
+                <textarea id="content" name="content" type="textarea" placeholder="프로젝트 설명을 입력해주세요. 개요 , 개발배경, 사용한 툴, 주요기능 등"
+                          style="font-family: 'Roboto', Helvetica, sans-serif;"></textarea>
             </div>
         </div>
         <center>
@@ -118,7 +178,7 @@
 
 <script>
     
-const csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value;
+// const csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value;
 
     
     
@@ -134,42 +194,42 @@ function fileCheck(obj) {
 //       var form = $("#writeProject")[0];
 //       var formData = new FormData(form);     
       
-      // $.ajax({
-      //   type: "POST",
-      //   url: "{% url 'projectCreate' %}",
-      //   // data: $("#writeProject").serialize(),
-      //   data: formData,
-      //   cache: false,
-      //   contentType : false,
-      //   processData : false,
-      //   success: function(data) {
-      //       // alert(data);
-      //       console.log(data);
-      //       // alert('프로젝트가 업로드되었습니다.');
-      //       let response = confirm("프로젝트가 업로드되었습니다.");
-      //         if(response){
-      //           // window.location.href = "{% url 'project' %}";
-      //            // 여기에 name을 쓸수 있눈듯
-      //           // alert("성공적으로 삭제되었습니다.");
-      //         }
+//       $.ajax({
+//         type: "POST",
+//         url: "{% url 'projectCreate' %}",
+//         // data: $("#writeProject").serialize(),
+//         data: formData,
+//         cache: false,
+//         contentType : false,
+//         processData : false,
+//         success: function(data) {
+//             // alert(data);
+//             console.log(data);
+//             // alert('프로젝트가 업로드되었습니다.');
+//             let response = confirm("프로젝트가 업로드되었습니다.");
+//               if(response){
+//                 // window.location.href = "{% url 'project' %}";
+//                  // 여기에 name을 쓸수 있눈듯
+//                 // alert("성공적으로 삭제되었습니다.");
+//               }
             
-      //       // window.location.href = "{% url 'project' %}";
+//             // window.location.href = "{% url 'project' %}";
             
-      //   },
-      //     error: function (xhr, status, error) {
-      //         alert(error);
-      //         console.log(error);
-      //   },
-      //   complete : function(){
-      //       window.location.href = "/project";
-      //         let response = confirm("프로젝트가 업로드되었습니다.");
-      //         if(response){
-      //           window.location.href = "/project";
-      //         }
-      //     }
-      // });
-    });
-});
+//         },
+//           error: function (xhr, status, error) {
+//               alert(error);
+//               console.log(error);
+//         },
+//         complete : function(){
+//             window.location.href = "/project";
+//               let response = confirm("프로젝트가 업로드되었습니다.");
+//               if(response){
+//                 window.location.href = "/project";
+//               }
+//           }
+//       });
+//     });
+// });
     
 
 

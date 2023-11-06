@@ -11,6 +11,6 @@ import os
 
 from django.core.wsgi import get_wsgi_application
 
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'ssim-zang.settings')
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'ssim_zang_up.settings')
 
 application = get_wsgi_application()

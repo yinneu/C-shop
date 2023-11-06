@@ -22,7 +22,7 @@
               {% csrf_token %}
             <h1>Create Account</h1>
             <span>or use your Student ID for registration</span>
-            <input name="name" type="text" placeholder="Name" >
+            <input name="name" type="text" placeholder="Name">
             <!-- <input type="text" placeholder="Student ID"> -->
             <input name="id" type="ID" placeholder="ID">
             <input name="pw" type="password" placeholder="Password">
@@ -35,13 +35,14 @@
 
         <!-- sign in 컨테이너(로그인) -->
         <div class="sign-in-container">
+            <!-- onSubmit="return signIn(this);" -->
           <form onSubmit="return signIn(this);">
               {% csrf_token %}
             <h1>Sign In</h1>
             <span>or use your account</span>
             <input name="id" type="ID" placeholder="ID" id="signInId">
             <input name="pw" type="password" placeholder="Password" id="signInPw">
-            <button class="form_btn" >Sign In</button>
+            <button class="form_btn">Sign In</button>
           </form>
         </div>
 
@@ -67,62 +68,65 @@
 
 <!-- 페이지별 추가 스크립트 추가 -->
 {% block extra_script %}
-<script  src="{% static 'js/login.js'%}"></script>
-<script>
-    function signIn(obj) {
-      if (!obj.id.value) {
-        alert("id를 입력해주세요.");
-        return false;
-      }
-      if (!obj.pw.value) {
-        alert("password를 입력해주세요.");
-        return false;
-      }
-      $.ajax({
-        type: "POST",
-        url: '/member/login',
-        data: {
-          'id': obj.id.value,
-          'pw': obj.pw.value,
-          'csrfmiddlewaretoken': csrftoken
-        },
-        success: function (ajax_data) {
-          window.location.href = '/';
-        },
-        error: function (xhr, status, error) {
-          alert("ID 혹은 Password를 확인해주세요.");
+    <script  src="{% static 'js/login.js'%}"></script>
+    <script>
+        function signIn(obj) {
+          if (!obj.id.value) {
+            alert("id를 입력해주세요.");
+            return false;
+          }
+          if (!obj.pw.value) {
+            alert("password를 입력해주세요.");
+            return false;
+          }
+            // alert("왜 안됨");
+          $.ajax({
+            type: 'POST',
+            url: '/member/login',
+            data: {
+              'id': obj.id.value,
+              'pw': obj.pw.value,
+              'csrfmiddlewaretoken': csrftoken
+            },
+            success: function (ajax_data) {
+              window.location.href = '/';
+            },
+            error: function (xhr, status, error) {
+              alert("ID 혹은 Password를 확인해주세요.");
+                alert(status, error); 
+            }
+          });
+          return false;
         }
-      });
-      return false;
-    }
-    function signUp(obj) {
-      if (!obj.name.value || !obj.id.value || !obj.pw.value) {
-        alert("모두 입력해주세요.");
-        return false;
-      }
-      if (obj.pw.value != obj.pwCheck.value) {
-        alert("비밀번호를 확인해주세요.");
-        return false;
-      }
-      $.ajax({
-        type: "POST",
-        url: '/member/create',
-        data: {
-          'id': obj.id.value,
-          'pw': obj.pw.value,
-          'name': obj.name.value,
-          'csrfmiddlewaretoken': csrftoken
-        },
-        success: function (ajax_data) {
-          window.location.href = '/';
-        },
-        error: function (xhr, status, error) {
-          alert("중복된 ID입니다.");
+
+        function signUp(obj) {
+          if (!obj.name.value || !obj.id.value || !obj.pw.value) {
+            alert("모두 입력해주세요.");
+            return false;
+          }
+          if (obj.pw.value != obj.pwCheck.value) {
+            alert("비밀번호를 확인해주세요.");
+            return false;
+          }
+          $.ajax({
+            type: "POST",
+            url: '/member/create',
+            data: {
+              'id': obj.id.value,
+              'pw': obj.pw.value,
+              'name': obj.name.value,
+              'csrfmiddlewaretoken': csrftoken
+            },
+            success: function (ajax_data) {
+              window.location.href = '/';
+            },
+            error: function (xhr, status, error) {
+              alert("중복된 ID입니다.");
+            }
+          });
+          return false;
         }
-      });
-      return false;
-    }
-    
+
     </script>
 {% endblock %}
 

@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% load static %}
 <!-- 페이지별 title -->
-{% block title %}C#{% endblock %}
+{% block title %}{% endblock %}
 
 <!-- head 부분 페이지별 추가적인 css, js 있으면 여기에 -->
 {% block extra_code %}
@@ -16,17 +16,17 @@ document.body.className = "is-preload landing";
 </script>
 
 <!-- Banner -->
-				<section id="banner">
-					<div class="content">
-						<header>
-							<h2>C<sup>#</sup></h2>
-							<p>씨애랑과 함께<br />
-							개발자의 꿈을 키워갑니다.</p>
-						</header>
-						<span class="image"><img src="{% static 'images/logo_main.png' %}" alt="" /></span>
-                    </div>
-					<a href="#one" class="goto-next scrolly">Next</a>
-				</section>
+        <section id="banner">
+            <div class="content">
+                <header>
+                    <h2>C<sup>#</sup></h2>
+                    <p>씨애랑과 함께<br />
+                    개발자의 꿈을 키워갑니다.</p>
+                </header>
+                <span class="image"><img src="{% static 'images/logo_main.png' %}" alt="" /></span>
+            </div>
+            <a href="#one" class="goto-next scrolly">Next</a>
+        </section>
 
          <section id="two" class="spotlight style2 right">
             <span class="image fit main"><img src="/static/images/main-shop.png" alt="" /></span>

@@ -1,5 +1,6 @@
 *, *:after, *:before {
-    box-sizing: border-box; }
+    box-sizing: border-box; 
+}
 
 body {
     overflow-x: hidden;
@@ -13,10 +14,19 @@ h2 {
     margin-bottom: 10px; 
 }
 
+button {
+    width: 140px;
+    height: 50px;
+    background: linear-gradient(87deg, #172b4d 0, #1a174d 100%);
+    border: 1px solid white;
+    border-radius: 5px;
+    color: whitesmoke;
+    font-weight: 800;
+}
+
 button:hover {
     cursor: pointer;
 }
-  
 
 
 #cardOuterbox {
@@ -154,4 +164,18 @@ button:hover {
     }
 
 
+#uploadProject {
+    width: 140px;
+    height: 50px;
+    background: linear-gradient(87deg, #172b4d 0, #1a174d 100%);
+    border: 1px solid white;
+    border-radius: 5px;
+    color: whitesmoke;
+    font-weight: 800;
+}
+
+#uploadProject:hover {
+    color: linear-gradient(87deg, #172b4d 0, #1a174d 100%);
+    background-color: whitesmoke;
+}
 

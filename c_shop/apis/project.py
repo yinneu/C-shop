@@ -10,7 +10,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__fil
 def create(request):
     
     try:
-        
+#        
         if request.session['id'] == None:
             return redirect('/login')
         
@@ -31,19 +31,20 @@ def create(request):
         
         if ( 'file' in request.FILES and request.FILES['file'] is not None):
             print(request.FILES['file'])
-            project_img = ProjectImages.objects.create(project=new_project, photo=request.FILES['file'])
+            img_file = request.FILES['file']
+            project_img = ProjectImages.objects.create(project=new_project, photo=img_file, filename=img_file.name)
             print(project_img)
             
         print(new_project)
         
-        add_exp = user.plantExp + 13
+        add_exp = user.plantExp + 30
         
         if add_exp >= 100:
             add_exp = add_exp % 100
             user.plantRebirth += 1
             user.currentCoin += 1
             user.sumCoin += 1
-            
+          
         user.plantExp = add_exp
         user.save()
         
@@ -65,6 +66,7 @@ def update(request):
     except Exception as e :
         print(e)
         return HttpResponse(status=400)   
+    
     
     
 def delete(request, id):   

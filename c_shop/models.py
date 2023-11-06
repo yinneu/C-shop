@@ -43,6 +43,7 @@ class Board(models.Model):
     anonymous = models.BooleanField(default=False)
     created_at = models.DateField(auto_now_add=True)
     updated_at = models.DateField(auto_now=True)
+    views = models.PositiveIntegerField(default=0)
     
     
 class BoardLike(models.Model):
@@ -53,6 +54,9 @@ class BoardLike(models.Model):
 class BoardImages(models.Model):
     board = models.ForeignKey(Board, on_delete=models.CASCADE)
     photo = models.ImageField(upload_to="board", null=True)
+    filename = models.CharField(max_length=64, null=True)
+    
+
     
 
     
@@ -78,6 +82,7 @@ class ProjectLike(models.Model):
 class ProjectImages(models.Model):
     project = models.ForeignKey(Project, on_delete=models.CASCADE)
     photo = models.ImageField(blank=True, upload_to=rename_imagefile_to_uuid, null=True)   
+    filename = models.CharField(max_length=64, null=True)
 
     
     

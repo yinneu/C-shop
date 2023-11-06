@@ -1,7 +1,7 @@
 from django.urls import path
 
 from . import views
-from .apis import member, project
+from .apis import member, project, board
 
 urlpatterns = [
     path("", views.index, name="index"),
@@ -23,6 +23,11 @@ urlpatterns = [
     path("community/list", views.communityList, name="communityList"),
     path("community/view/<int:id>", views.communityView, name="communityView"),
     path("community/write", views.communityWrite, name="communityWrite"),
+    
+    path("board/create", board.create, name="boardCreate"),
+    path("board/delete/<int:id>", board.delete, name="boardDelete"),
+    
+    
     
     
     path("member/create", member.create, name="memberCreate"),

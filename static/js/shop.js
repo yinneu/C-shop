@@ -1,19 +1,33 @@
 var cardView = document.getElementById("modalCard");
 var cardViewEffect = document.getElementById("modalEffect");
 var cardViewPrice = document.getElementById("price"); //금액
+//var buyBtn = document.getElementById("buyAdvantage"); //구매버튼
+    
 
 
 $('.stack').click(function(){
-  $('#modal-container').removeAttr('class').addClass("two");
-  $('body').addClass('modal-active');
-  
-  cardView.children[0].style.backgroundImage = $(this).children(0).css('background-image');
-  
-  cardView.children[1].innerHTML = $(this).children()[0].outerHTML;
+    $('#modal-container').removeAttr('class').addClass("two");
+    $('body').addClass('modal-active');
+
+    cardView.children[0].style.backgroundImage = $(this).children(0).css('background-image');
+
+    cardView.children[1].innerHTML = $(this).children()[0].outerHTML;
     cardViewEffect.innerText = $(this).children()[1].innerText;
-    cardViewPrice.innerText = 'x ' + $(this).children()[2].innerText;
+    cardViewPrice.innerText = $(this).children()[2].innerText; //구매금액
   
 })
+
+
+// $('#buyAdvantage').click(function(){
+//     console.log("buy click!");
+//     alert("애랑 열매가 모자라요! \n더 모아주세요!");
+// })
+
+function onbuy(){
+    console.log("buy click!");
+    alert("애랑 열매가 모자라요! \n더 모아주세요!");
+}
+
 
 $('#modal-container').click(function(){
   $(this).addClass('out');

@@ -1,22 +1,22 @@
-*, *:after, *:before {
+*, *:after, *:before(#footer > *) {
     box-sizing: border-box; }
 
 body {
     overflow-x: hidden;
 }
 
-h2 {
+.card h2 {
     font-size: 27px;
     font-weight: 500;
     letter-spacing: -0.2px;
     margin-bottom: 10px; 
 }
   
-.card h2, h4, p, ul, li {
+.card h2,  .card h4, .card p, .card ul, .card li {
     margin: 0;
     padding: 0; }
   
-.card h2, h4 {
+.card h2, .card h4 {
     font-family: 'Oswald', sans-serif;
     text-transform: uppercase;
     color: #333333; 
@@ -26,21 +26,22 @@ h2 {
     list-style-type: disc;
 }
   
-.card p, li {
+.card p, .card li {
     font-family: "Roboto", sans-serif;
     font-weight: 600;
     /* color: #555; */
     color: #2d2c3c94;
     line-height: 22px; }
   
-.card ul, li {
+.card ul, .card li {
     text-decoration: none;
     list-style: disc outside; 
     padding: 0 4px;
 }
   
-  ul {
-    padding-left: 20px; }
+.card ul {
+    padding-left: 20px; 
+}
   
 
   
@@ -59,9 +60,9 @@ h2 {
     perspective: 1000px; 
 }
   
-.active {
+.card-active {
     transform: translateZ(0px) rotateY(180deg) !important; }
-    .active:after {
+    .card-active:after {
       display: none; }
   
 .card {
@@ -110,6 +111,7 @@ h2 {
     .card .info {
       padding: 18px; 
       background-color: transparent;
+
     }
 
     .card .info h2 {
@@ -129,6 +131,8 @@ h2 {
 
     .front .info {
         padding-top: 10px;
+        overflow-y: hidden;
+        max-height: 140px;
     }
 
     .front .info h2 {
@@ -290,6 +294,9 @@ h2 {
     scale: 1.05;
     cursor: pointer;
   }
+
+
+
 
 
 

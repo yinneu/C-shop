@@ -1,9 +1,24 @@
 @media (max-width: 1000px) {
+    
+    #footer {
+        margin-left: 0rem;
+    }
+    
+    #navPanel {
+        display: none;
+    }
+    
+    .box1, .left_sub_menu {
+        display: none;
+    }
+    
     .board_wrap {
         width: 100%;
         min-width: 320px;
         padding: 0 30px;
         box-sizing: border-box;
+/*          */
+        left: 0;
     }
 
     .board_list .num,
